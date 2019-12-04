@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Wallet</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="blue_bg mb10">
+    <ion-row>
+      <ion-col col-12>
+        <div class="wallet"><img src="../../assets/imgs/wallet.svg"></div>
+        <div class="username">{{ accountName | titlecase }}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 class="ion-text-center">
+        <h5 class="text-white mb10">{{ userInfo.address }}
+          <ion-icon name="browsers" (click)="copyAddress()"></ion-icon>
+        </h5>
+        <h5 class="text-white">~ 0.00 USD</h5>
+      </ion-col>
+    </ion-row>
+    <div class="broder-top"></div>
+    <ion-row>
+      <ion-col size="6" class="ion-text-center broder-right text-white">
+        <ion-icon name="qr-scanner"></ion-icon>
+        &nbsp;
+        <button ion-button class="button_new" (click)="receive()">Receive </button>
+      </ion-col>
+      <ion-col size="6" class="ion-text-center text-white">
+        <ion-icon name="swap"></ion-icon>
+        &nbsp;
+        <button ion-button class="button_new" (click)="send()">Send </button>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-row>
+    <ion-col size="6">
+      <ion-card>
+        <ion-row class="mb10">
+          <ion-col size="8" class="padding-0">Bandwidth</ion-col>
+          <ion-col size="4" class="text-right padding-0">{{ userInfo.bandwidth }}/5000</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12" class="padding-0">
+            <ion-progress-bar color="success" value="{{ bandWidthPer }}"></ion-progress-bar>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+    <ion-col size="6">
+      <ion-card>
+        <ion-row class="mb10">
+          <ion-col size="8" class="text-blue padding-0">Energy</ion-col>
+          <ion-col size="4" class="text-right padding-0">0/0</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-progress-bar></ion-progress-bar>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-grid> </ion-grid>
+        <ion-row class="padding-0">
+          <ion-col size="2">
+            <div class="red_circle"> <img src="../../assets/imgs/metchnet_ic_white.png"> </div>
+          </ion-col>
+          <ion-col size="8">
+            <div div class="left mt5 font16">TRX
+              <ion-icon name="checkmark-circle" class="chick_circle"></ion-icon>
+            </div>
+          </ion-col>
+          <ion-col size="2">
+            <h2 div class="right mt5 font16">{{ userInfo.balance }}</h2>
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

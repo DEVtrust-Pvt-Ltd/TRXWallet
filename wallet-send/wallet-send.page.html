@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Send</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="payment" (ngSubmit)="doPayment()">
+    <div class="form-wrap">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Payment Account</ion-label>
+          <ion-input type="text" formControlName="paymentAccount" readonly></ion-input>
+        </ion-item>
+        <div *ngIf="submitted && f.paymentAccount.errors" class="invalid-feedback">
+          <div *ngIf="f.paymentAccount.errors.required">Payment name is required</div>
+        </div>
+        <div class="ion-text-end">Balance: {{ userInfo.balance ? userInfo.balance : 0 }} TRX</div>
+        <ion-item>
+          <ion-label position="floating">Receive Account</ion-label>
+          <ion-input type="text" formControlName="receiveAccount"></ion-input>
+        </ion-item>
+        <div *ngIf="submitted && f.receiveAccount.errors" class="invalid-feedback">
+          <div *ngIf="f.receiveAccount.errors.required">Receive name is required</div>
+        </div>
+        <ion-item>
+          <ion-label position="floating">Transfer Amount</ion-label>
+          <ion-row>
+            <ion-col size="9" class="text-blue">
+              <ion-input type="number" formControlName="transferAmount"></ion-input>
+            </ion-col>
+            <ion-col size="3" class="ion-text-end">
+              <ion-button expand="full" shape="" class="ion-text-center" color="primary" (click)="maxAmt()">MAX</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+        <div *ngIf="submitted && f.transferAmount.errors" class="invalid-feedback">
+          <div *ngIf="f.transferAmount.errors.required">Transfer Amount is required</div>
+          <div *ngIf="f.transferAmount.errors.min">Transfer Amount must be greater than 1.</div>
+        </div>
+      </ion-list>
+      <button type="submit" ion-button class="ml5 button_orange btn_radius w-100">Send</button>
+    </div>
+  </form>
+</ion-content>
